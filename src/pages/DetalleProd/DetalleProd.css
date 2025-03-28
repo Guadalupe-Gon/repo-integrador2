@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #afd5ae;
+    --secundary-color: #E9EDC9;
+    --terciary-color: #cfcec4;
+    --text-color: #35322b;
+    --hover-color: #f2bb85;
+}
+
+body {
+    font-family: "Delius";
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.3rem;
+    font-family: 'Delius';
+    color: var(--text-color);
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 1.5rem;
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: .5rem;
+        margin: .5rem 1rem;
+        height: auto;
+        background-color: var(--terciary-color);
+        border: solid black 2px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px 2px #222;
+        width: fit-content;
+    }
+
+    .subtitle {
+        font-size: 1.75rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 0;
+        padding: .5rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 1.25rem;
+        padding: 0.6rem;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+.btn {
+    text-align: center;
+
+    .btn2 {
+        display: inline-block;
+        padding: 0.7rem;
+        background-color: var(--primary-color);
+        color: var(--dark-color);
+        text-align: center;
+        text-decoration: none;
+        border-radius: 0.3rem;
+        border: solid 2px black;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: background-color 0.5s ease-in-out;
+        font-weight: bolder;
+        box-shadow: 2px 2px 2px 2px rgb(95, 93, 93);
+        margin-bottom: .7rem;
+
+        &:hover {
+            background-color: var(--hover-color);
+            color: var(--dark-color);
+        }
+    }
+}

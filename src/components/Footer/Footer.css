@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #afd5ae;
+    --secundary-color: #E9EDC9;
+    --terciary-color: #cfcec4;
+    --text-color: #35322b;
+    --hover-color: #f2bb85;
+}
+
+body {
+    font-family: 'Delius';
+    color: var(--text-color);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secundary-color);
+    padding-top: 2.3rem;
+}
+
+.main-container {
+    padding: 1rem;
+    flex-grow: 2;
+}
+
+.main-footer {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to left, var(--primary-color), #feb47b);
+    color: var(--text-color);
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0;
+
+    section {
+        padding: .5rem;
+    }
+}
+
+.footer-social,
+.footer-info,
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.f-social,
+.f-info,
+.f-contact {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    display: flex;
+}
+
+.icon-social div,
+.footer-info div,
+.footer-contact div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-right: 1rem;
+    gap: 10px;
+
+    p {
+        margin: 0;
+        font-size: 1rem;
+    }
+}
+
+
+/*FORMATO PARA LOS ICONOS DEL FOOTER, APLICAR SI LE PONEMOS LINK DE REDIRECCIÓN*/
+
+/* .footer-social svg,
+.footer-info svg,
+.footer-contact svg {
+    font-size: 20px;
+    color: var(--text-color);
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        transition: color 0.3s ease-in-out;
+        color: #b7753f;
+    }
+} */
+
+
+.logo2 img {
+    margin: .5rem;
+    width: 150px;
+    height: 150px;
+    opacity: 0.8;
+}
+
+@media screen and (width > 768px) {
+    body {
+        max-width: 100%;
+        padding: 0.75rem;
+        margin: 0.5rem auto;
+    }
+
+    .main-footer {
+        display: flex;
+        background-color: var(--primary-color);
+        width: 100%;
+
+        section {
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo2 img {
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

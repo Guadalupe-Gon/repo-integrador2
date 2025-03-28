@@ -1,0 +1,34 @@
+.caract {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 2rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+
+    .caract-1,
+    .caract-2,
+    .caract-3,
+    .caract-4 {
+        font-size: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 12rem;
+        height: 7rem;
+        border: solid 1px black;
+        border-radius: 5px;
+        box-shadow: 2px 2px 2px 2px #222;
+        background-color: var(--primary-color);
+        margin: .5rem;
+        margin-top: 0;
+        padding: 1rem;
+        
+        p {
+            font-size: 1rem;
+            padding: .40rem;
+        }
+    }
+}

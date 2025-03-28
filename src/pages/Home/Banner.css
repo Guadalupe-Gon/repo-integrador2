@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #afd5ae;
+    --secundary-color: #E9EDC9;
+    --terciary-color: #cfcec4;
+    --text-color: #35322b;
+    --hover-color: #f2bb85;
+}
+
+body {
+    font-family: 'Delius';
+    color: var(--text-color);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.3rem;
+}
+
+.section-banner {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    color: var(--primary-color);
+    overflow: hidden;
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input:checked ~ .slider-content {
+        animation: none;
+    }
+
+    input:nth-child(1):checked ~ .slider-buttons label:nth-child(1),
+    input:nth-child(2):checked ~ .slider-buttons label:nth-child(2), 
+    input:nth-child(3):checked ~ .slider-buttons label:nth-child(3) {
+        background-color: var(--hover-color);
+    }
+    
+    input:nth-child(1):checked ~ .slider-content {
+        transform: translate(0) !important;
+    }
+
+    input:nth-child(2):checked ~ .slider-content {
+        transform: translate(-100vw) !important;
+    }
+
+    input:nth-child(3):checked ~ .slider-content {
+        transform: translate(-200vw) !important;
+    }
+
+    .slider-buttons {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 1;
+
+        label {
+            position: relative;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 2px 2px 2px 2px #252424;
+
+            &:hover {
+                background-color: rgb(63, 60, 60);
+                scale: 1.2;
+            }
+        }
+    }
+}
+
+.slider-content {
+    width: 300%;
+    display: flex;
+    height: 100%;
+    transition: transform 1s ease-in-out;
+    animation: slide 15s infinite;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: linear-gradient(to bottom, transparent, rgba (0,0,0,0.15) 65%, rgba (0,0,0,0.75));
+    }
+
+    .slide-1,
+    .slide-2,
+    .slide-3 {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+
+        img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+@media screen and (width > 768px) {
+    .section-banner {
+        width: 100%;
+        height: 500px;
+    }
+}

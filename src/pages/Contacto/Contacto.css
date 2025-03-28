@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #afd5ae;
+    --secundary-color: #E9EDC9;
+    --terciary-color: #cfcec4;
+    --text-color: #35322b;
+    --hover-color: #f2bb85;
+}
+
+body {
+    font-family: "Delius";
+    background-color: var(--secundary-color);
+    font-family: 'Delius';
+    color: var(--text-color);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.3rem;
+}
+
+.contacto {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 30px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    .form,
+    .mapa {
+        max-width: 1500px;
+        gap: 30px;
+    }
+
+    .form {
+        width: 25rem;
+        margin-right: 40px;
+    }
+
+    .form {
+        .register-form {
+            font-family: "Delius";
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem;
+            padding-top: .5rem;
+            border: solid black 2px;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            box-shadow: -5px -5px 5px 5px;
+            overflow: visible;
+            position: relative;
+            transform: translate(0%);
+
+            .form-title {
+                text-align: center;
+                font-size: 1.2rem;
+                margin-top: .8rem;
+                margin-bottom: .8rem;
+                text-decoration: underline;
+                text-decoration-thickness: .1rem;
+                text-underline-offset: .5rem;
+            }
+
+            .input-group {
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+                color: var(--text-color);
+                font-family: "Delius";
+                font-weight: bold;
+                align-items: center;
+                background-color: var(--primary-color);
+            }
+
+            .input-group label {
+                display: block;
+                margin-bottom: 1rem;
+                font-weight: bold;
+            }
+
+            .input-group input,
+            .input-group textarea {
+                width: 100%;
+                height: 100%;
+                border: none;
+                font-family: "Delius";
+                padding: 0.5rem;
+                outline: none;
+                border: none;
+                border-radius: 6px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                transition: box-shadow 0.3s ease-in-out;
+            }
+
+            label {
+                padding: auto;
+                margin: 0.25rem;
+            }
+
+            input:focus {
+                border-color: #66afe9;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                outline: solid 1px black;
+            }
+
+            label {
+                padding: auto;
+                margin: 0.6rem;
+            }
+
+            .button {
+                text-align: center;
+
+                .btn {
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                    padding: 0.25rem 0.75rem;
+                    background-color: var(--secundary-color);
+                    color: var(--text-color);
+                    border: solid 2px;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    display: inline-block;
+                    font-family: "Delius";
+                    font-weight: bold;
+                    justify-content: center;
+                    box-shadow: 2px 2px 2px 2px rgb(95, 93, 93);
+
+                    &:hover {
+                        background-color: var(--hover-color);
+                        transition: .5s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+
+    .mapa {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        iframe {
+            width: 650px;
+            height: 550px;
+        }
+    }
+}
+
+.error {
+    color: rgb(190, 69, 69);
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    border: 2px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.input-group .error {
+    border-color: rgb(190, 69, 69) !important;
+}
+
+@media (max-width: 768px) {
+    .contacto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto; 
+
+        .form {
+            width: 80%;
+            height: auto;  
+            max-width: 100%; 
+            margin: 0.5rem auto;          
+        }
+
+        .mapa {
+            width: 80%;
+            height: auto;
+            margin: 0.5rem auto;
+            transform: translate(0%);
+        }
+    }
+} 
