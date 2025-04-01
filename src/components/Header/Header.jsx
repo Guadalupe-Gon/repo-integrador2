@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router";
 import "./Header.css";
 import React from 'react';
+import { useOrder } from "../../Context/OrderContext";
 
 export default function Header() {
 
     const [isBurgerOpen, setIsBurgerOpen] = React.useState(false);
-
     const handleBurgerClick = () => {
         setIsBurgerOpen(!isBurgerOpen);
     }
+
+    const { cart, toggleCart } = useOrder()
 
     return (
         <header className="main-header">
@@ -21,7 +23,7 @@ export default function Header() {
                 id="burger"
                 className="input-burger"
                 checked={isBurgerOpen}
-                onChange={handleBurgerClick}/>
+                onChange={handleBurgerClick} />
             <label className="burger-container" htmlFor="burger">
                 <div className="burger"></div>
             </label>
@@ -71,8 +73,11 @@ export default function Header() {
                 <div className="cart-container">
                     <FontAwesomeIcon icon={faUser} />
                 </div>
-                <div className="cart-container">
+                <div className="cart-container" onClick={ () => toggleCart() }>
                     <FontAwesomeIcon icon={faShoppingCart} />
+                    <span className="cart-count">
+                        { cart.length }
+                    </span>
                 </div>
             </div>
         </header>
