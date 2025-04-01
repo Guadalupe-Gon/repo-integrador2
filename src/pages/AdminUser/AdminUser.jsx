@@ -136,14 +136,14 @@ export default function AdminUsers() {
                 <input
                     type='text'
                     name='name'
-                    placeholder='Nombre'
+                    placeholder='Nombre y apellido'
                     value={form.name}
                     onChange={handleChange}
                     required />
                 <input
                     type='email'
                     name='email'
-                    placeholder='Correo Electrónico'
+                    placeholder='Correo electrónico'
                     value={form.email}
                     onChange={handleChange}
                     required />

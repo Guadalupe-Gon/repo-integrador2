@@ -7,11 +7,27 @@ import React from 'react';
 
 export default function Header() {
 
+    const [isBurgerOpen, setIsBurgerOpen] = React.useState(false);
+
+    const handleBurgerClick = () => {
+        setIsBurgerOpen(!isBurgerOpen);
+    }
+
     return (
         <header className="main-header">
 
+            <input
+                type="checkbox"
+                id="burger"
+                className="input-burger"
+                checked={isBurgerOpen}
+                onChange={handleBurgerClick}/>
+            <label className="burger-container" htmlFor="burger">
+                <div className="burger"></div>
+            </label>
+
             <div class="logo">
-                <a href="">
+                <a href="/">
                     <img src="/images/LOGO.png" className="nav-logo" alt="Logo empresa" />
                 </a>
             </div>
@@ -50,6 +66,7 @@ export default function Header() {
                     </li>
                 </ul>
             </nav>
+
             <div className="user-info">
                 <div className="cart-container">
                     <FontAwesomeIcon icon={faUser} />

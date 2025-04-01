@@ -162,12 +162,14 @@ body {
                     justify-content: center;
                     align-items: center;
                     margin-top: 1rem;
+                    font-size: 1.5rem;
 
-                    i {
+                    .icon {
                         color: black;
+                        padding: .5rem;
 
                         &:hover {
-                            color: var(--hover-color);
+                            color: rgb(77, 77, 133);
                             transition: color .4s ease-in-out
                         }
                     }

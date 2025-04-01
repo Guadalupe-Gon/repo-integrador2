@@ -1,6 +1,11 @@
 import React from 'react';
 import './Nosotros.css';
 import MainTitle from '../../components/Main-title/MainTitle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons/faInstagramSquare';
+import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
 
 export default function Nosotros() {
 
@@ -56,16 +61,16 @@ export default function Nosotros() {
                         </p>
                         <div className="icons">
                             <a className="icon" href="https://www.facebook.com" target="_blank">
-                                <i className="fa-brands fa-facebook" />
+                                <FontAwesomeIcon icon={faFacebookSquare} />
                             </a>
                             <a className="icon" href="https://www.twitter.com" target="_blank">
-                                <i className="fa-brands fa-twitter" />
+                                <FontAwesomeIcon icon={faTwitterSquare} />
                             </a>
                             <a className="icon" href="https://www.instagram.com" target="_blank">
-                                <i className="fa-brands fa-square-instagram" />
+                                <FontAwesomeIcon icon={faInstagramSquare} />
                             </a>
                             <a className="icon" href="https://www.linkedin.com" target="_blank">
-                                <i className="fa-brands fa-linkedin" />
+                                <FontAwesomeIcon icon={faLinkedinIn} />
                             </a>
                         </div>
                     </div>

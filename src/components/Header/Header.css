@@ -47,6 +47,72 @@ header {
     padding: 1rem;
     margin: 0;
 
+    .input-burger {
+        display: none;
+    }
+
+    .burger-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+
+        .burger {
+            width: 26px;
+            height: 3px;
+            background-color: var(--text-color);
+            position: relative;
+        }
+
+        .burger::before,
+        .burger::after {
+            content: "";
+            width: 26px;
+            height: 3px;
+            position: absolute;
+            left: 0;
+            background-color: var(--text-color);
+            transition: transform .3s ease-in-out;
+        }
+
+        .burger::before {
+            position: absolute;
+            top: -8px;
+        }
+
+        .burger::after {
+            position: absolute;
+            top: 8px;
+        }
+    }
+
+    .input-burger:checked {
+        ~.main-nav {
+            left: 0 !important;
+            background-color: var(--primary-color);
+            box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        ~.burger-container {
+            .burger {
+                background-color: transparent;
+            }
+
+            .burger::before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+
+            .burger::after {
+                top: 0;
+                transform: -45deg;
+            }
+        }
+    }
+
     .logo {
         display: flex;
         align-items: center;
@@ -61,7 +127,7 @@ header {
     .main-nav {
         position: fixed;
         transition: left 0.3s ease-in-out;
-        
+
         overflow: hidden;
 
         .nav-list {
@@ -106,7 +172,7 @@ header {
     body {
         max-width: 75%;
         padding: 0.75rem;
-        margin: 0.5rem auto;
+        margin: 0.5rem;
     }
 
     .main-header {
@@ -118,6 +184,10 @@ header {
             .picture-container {
                 display: flex;
             }
+        }
+
+        .burger-container {
+            display: none;
         }
 
         .main-nav {
@@ -141,5 +211,77 @@ header {
                 }
             }
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .input-burger {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 35;
+    }
+
+    .burger-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        cursor: pointer;
+    }
+
+    .burger {
+        width: 26px;
+        height: 3px;
+        background-color: var(--text-color);
+        position: relative;
+    }
+
+    .burger::before,
+    .burger::after {
+        content: "";
+        width: 26px;
+        height: 3px;
+        position: absolute;
+        left: 0;
+        background-color: var(--text-color);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .burger::before {
+        top: -8px;
+    }
+
+    .burger::after {
+        top: 8px;
+    }
+
+    .input-burger:checked~.burger-container .burger {
+        background-color: transparent;
+    }
+
+    .input-burger:checked~.burger-container .burger::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    .input-burger:checked~.burger-container .burger::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+    .main-nav {
+        position: fixed;
+        left: -100%;
+        width: 100%;
+        top: 80px;
+        height: 100vh;
+        background: linear-gradient(to left, #feb47b, var(--primary-color));
+        transition: left 0.3s ease-in-out;
+    }
+
+    .input-burger:checked~.main-nav {
+        left: 0;
     }
 }

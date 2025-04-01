@@ -36,7 +36,7 @@ export default function Home() {
     useEffect(() => {
         getProducts()
     }
-    , [])
+        , [])
 
     return (
         <div>
@@ -86,7 +86,6 @@ export default function Home() {
                             )
                         })}
 
-                        
                         {/* {
                             cart.map((item) => {
                                 return (

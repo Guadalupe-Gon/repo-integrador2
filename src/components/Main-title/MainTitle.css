@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    
+
     .titulo {
         margin: 2rem;
         padding: 1rem;
@@ -14,5 +14,20 @@
         border-radius: 5px;
         text-shadow: 1px 1px 1px rgb(78, 74, 74);
         -webkit-text-stroke: 1px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        flex-direction: column;
+
+        .titulo {
+            text-align: center;
+            margin: 1rem;
+            padding: 0.8rem;
+            font-size: 1.2rem;
+            box-shadow: 3px 3px 3px 3px;
+            -webkit-text-stroke: 0.5px;
+        }
     }
 }
