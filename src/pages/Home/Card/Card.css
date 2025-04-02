@@ -54,6 +54,7 @@ body {
                 transform: translateY(0);
                 opacity: 2;
                 visibility: visible;
+                font-family: "Delius";
             }
         }
     }

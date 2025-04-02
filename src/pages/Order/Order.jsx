@@ -1,5 +1,6 @@
 import { useOrder } from "../../Context/OrderContext";
 import "./Order.css";
+import React from "react";
 
 export default function Order() {
 
@@ -21,7 +22,6 @@ export default function Order() {
                     <tbody>
                         {
                             cart.map(product => (
-
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.title}</td>
@@ -29,10 +29,8 @@ export default function Order() {
                                     <td>{product.quantity}</td>
                                     <td>{product.quantity * product.price}</td>
                                 </tr>
-
                             ))
                         }
-
                     </tbody>
                     <tfoot>
                         <tr>

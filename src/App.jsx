@@ -10,6 +10,7 @@ import AdminProd from './pages/AdminProd/AdminProd'
 import DetalleProd from './pages/DetalleProd/DetalleProd'
 import AdminUser from './pages/AdminUser/AdminUser'
 
+
 function App() {
 
   return (
@@ -19,7 +20,7 @@ function App() {
 
         <Header />
 
-        
+        {/* <OrderSidebar /> */}
 
         <Routes>
           <Route path="/" element={<Home />} />

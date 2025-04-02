@@ -1,23 +1,22 @@
-export default function Card({ id, name, price, description, image, cart, setCart }) {
+import { useOrder } from "../../../Context/OrderContext";
+
+export default function Card({ id, name, price, description, image }) {
+    const { addProd } = useOrder();
 
     const handleOnDetailsClick = () => {
         window.location.href = `/DetalleProd/${id}`;
     };
 
     const handleAddToCart = () => {
-        if (cart.some(item => item.id === id)) {
-            setCart((prevCart) =>
-                prevCart.map(item =>
-                    item.id === id ? { ...item, cantity: item.cantity + 1 } : item
-                )
-            );
-        } else {
-            setCart((prevCart) => {
-                cart
-                return [...prevCart, { id, name, price, cantity: 1 }];
-            });
-        }
-    }
+        const product = {
+            id,
+            title: name,
+            price,
+            quantity: 1,
+            image
+        };
+        addProd(product);
+    };
 
     return (
         <article className="card">
@@ -25,9 +24,12 @@ export default function Card({ id, name, price, description, image, cart, setCar
                 <img
                     alt={name}
                     className="card-image"
-                    src={image}/>
-            
-                <button className="card-add" onClick={handleAddToCart}>
+                    src={image} />
+
+                <button
+                    className="card-add"
+                    title="Añadir al carrito"
+                    onClick={handleAddToCart}>
                     Agregar al carrito
                 </button>
             </div>

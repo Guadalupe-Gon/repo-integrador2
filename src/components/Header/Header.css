@@ -290,7 +290,7 @@ header {
         position: fixed;
         left: -100%;
         width: 100%;
-        top: 80px;
+        top: 65px;
         height: 100vh;
         background: linear-gradient(to left, #feb47b, var(--primary-color));
         transition: left 0.3s ease-in-out;
@@ -298,5 +298,19 @@ header {
 
     .input-burger:checked~.main-nav {
         left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-container {
+        font-size: 20px;
+    }
+
+    .cart-container .cart-count {
+        width: 16px; 
+        height: 16px;
+        font-size: 0.65rem;
+        top: -8px;
+        right: -3px;
     }
 }

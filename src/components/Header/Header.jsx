@@ -13,7 +13,7 @@ export default function Header() {
         setIsBurgerOpen(!isBurgerOpen);
     }
 
-    const { cart, toggleCart } = useOrder()
+    const { count, toggleCart } = useOrder()
 
     return (
         <header className="main-header">
@@ -53,12 +53,12 @@ export default function Header() {
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/AdminProd">
-                            ADM. DE PRODUCTOS
+                            PRODUCTOS
                         </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/AdminUser">
-                            ADM. DE USUARIOS
+                            USUARIOS
                         </NavLink>
                     </li>
                     <li className="nav-item">
@@ -76,7 +76,7 @@ export default function Header() {
                 <div className="cart-container" onClick={ () => toggleCart() }>
                     <FontAwesomeIcon icon={faShoppingCart} />
                     <span className="cart-count">
-                        { cart.length }
+                        { count }
                     </span>
                 </div>
             </div>

@@ -16,9 +16,6 @@ const URL = "https://67d1918190e0670699baa003.mockapi.io"
 
 export default function Home() {
     const [products, setProducts] = useState([])
-    const [cart, setCart] = useState([])
-
-    console.log("CART", cart);
 
     async function getProducts() {
         try {
@@ -80,23 +77,9 @@ export default function Home() {
                                     price={product.price}
                                     description={product.descriptionShort}
                                     image={product.image}
-                                    cart={cart}
-                                    setCart={setCart}
                                 />
                             )
                         })}
-
-                        {/* {
-                            cart.map((item) => {
-                                return (
-                                    <div key={item.id}>
-                                        <p>{item.name}</p>
-                                        <p>{item.price}</p>
-                                        <p>{item.cantity}</p>
-                                    </div>
-                                )
-                            })
-                        } */}
 
                     </div>
                 </section>

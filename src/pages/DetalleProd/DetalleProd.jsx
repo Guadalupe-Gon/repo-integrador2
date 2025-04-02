@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './DetalleProd.css'
+import { useOrder } from '../../Context/OrderContext';
+import './DetalleProd.css';
 
 const URL = "https://67d1918190e0670699baa003.mockapi.io";
 
 export default function DetalleProd() {
     const { id } = useParams();
     const [product, setProductDetail] = useState({});
+    const { addProd } = useOrder();
 
     useEffect(() => {
         async function getProductById() {
@@ -21,6 +23,18 @@ export default function DetalleProd() {
 
         if (id) getProductById();
     }, [id]);
+
+    const handleAddToCart = () => {
+        if (product.id) {
+            addProd({
+                id: product.id,
+                title: product.name,
+                price: product.price,
+                quantity: 1,
+                image: product.image
+            });
+        }
+    };
 
     return (
         <section className="section-products">
@@ -39,9 +53,9 @@ export default function DetalleProd() {
                         <div className="price-btn">
                             <div className="card-price">${product.price || "0,00"}</div>
                             <div className="btn">
-                                <a className="btn2" href="#">
+                                <button className="btn2" onClick={handleAddToCart}>
                                     AGREGAR AL CARRITO
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
