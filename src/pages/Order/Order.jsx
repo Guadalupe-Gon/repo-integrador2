@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Order() {
 
-    const { cart, total } = useOrder()
+    const { cart, total, finalizarOrden, limpiarCarrito } = useOrder()
 
     return (
         <>
@@ -13,7 +13,7 @@ export default function Order() {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Título</th>
+                            <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Total</th>
@@ -25,7 +25,7 @@ export default function Order() {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.title}</td>
-                                    <td>{product.price}</td>
+                                    <td>${product.price}</td>
                                     <td>{product.quantity}</td>
                                     <td>{product.quantity * product.price}</td>
                                 </tr>
@@ -40,8 +40,8 @@ export default function Order() {
                 </table>
 
                 <div className="order-buttons">
-                    <button className="button">Finalizar compra</button>
-                    <button className="button">Vaciar carrito</button>
+                <button className="button" onClick={finalizarOrden}>Finalizar compra</button>
+                <button className="button" onClick={limpiarCarrito}>Vaciar carrito</button>
                 </div>
             </div>
         </>

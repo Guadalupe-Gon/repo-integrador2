@@ -19,31 +19,33 @@ html {
 }
 
 body {
+    background-color: var(--secundary-color);
     font-family: 'Delius';
     color: var(--text-color);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: var(--secundary-color);
     padding-top: 2.3rem;
 }
 
 header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 1000;
     width: 100%;
     background: linear-gradient(to left, #feb47b, var(--primary-color));
 }
 
 .main-header {
     display: flex;
+    position: absolute;
     height: 9%;
     width: 100%;
     justify-content: space-between;
     z-index: 30;
     font-size: 1rem;
+    font-weight: bolder;
     padding: 1rem;
     margin: 0;
 
@@ -116,6 +118,7 @@ header {
     .logo {
         display: flex;
         align-items: center;
+        z-index: 1;
 
         .nav-logo {
             width: 45px;
@@ -127,11 +130,10 @@ header {
     .main-nav {
         position: fixed;
         transition: left 0.3s ease-in-out;
-
         overflow: hidden;
 
         .nav-list {
-            padding: 2rem 0;
+            padding: 1rem 0;
             height: 100%;
 
             li.nav-item {
@@ -201,10 +203,6 @@ header {
             }
         }
 
-        .burger-container {
-            display: none;
-        }
-
         .main-nav {
             position: static;
             width: auto;
@@ -225,6 +223,10 @@ header {
                     }
                 }
             }
+        }
+
+        .burger-container {
+            display: none;
         }
     }
 }
@@ -290,10 +292,11 @@ header {
         position: fixed;
         left: -100%;
         width: 100%;
-        top: 65px;
+        top: 60px;
         height: 100vh;
         background: linear-gradient(to left, #feb47b, var(--primary-color));
         transition: left 0.3s ease-in-out;
+        z-index: 10;
     }
 
     .input-burger:checked~.main-nav {
@@ -304,13 +307,17 @@ header {
 @media (max-width: 600px) {
     .cart-container {
         font-size: 20px;
-    }
+        position: relative;
 
-    .cart-container .cart-count {
-        width: 16px; 
-        height: 16px;
-        font-size: 0.65rem;
-        top: -8px;
-        right: -3px;
+        .cart-count {
+            width: 16px;
+            height: 16px;
+            font-size: 0.65rem;
+            position: absolute;
+            top: 10px;
+            right: -3px;
+            left: 30px;
+            bottom: 80px;
+        }
     }
 }

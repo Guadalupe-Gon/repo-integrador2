@@ -22,7 +22,7 @@ body {
     background-color: var(--secundary-color);
     font-family: 'Delius';
     color: var(--text-color);
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     padding-top: 2.3rem;

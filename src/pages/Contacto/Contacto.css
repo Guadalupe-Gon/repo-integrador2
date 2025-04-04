@@ -19,7 +19,6 @@ html {
 }
 
 body {
-    font-family: "Delius";
     background-color: var(--secundary-color);
     font-family: 'Delius';
     color: var(--text-color);
@@ -37,8 +36,8 @@ body {
     flex-direction: row;
     width: 100%;
     gap: 30px;
-    margin-top: 1rem;
     margin-bottom: 2rem;
+    margin: 1rem;
 
     .form,
     .mapa {
@@ -195,13 +194,14 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 0 auto; 
+        margin: 1rem auto; 
+        max-width: 80%;
 
         .form {
             width: 80%;
             height: auto;  
             max-width: 100%; 
-            margin: 0.5rem auto;          
+            margin: auto 1rem;          
         }
 
         .mapa {

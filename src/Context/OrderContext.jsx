@@ -12,15 +12,18 @@ function OrderProvider({ children }) {
 
     useEffect(() => {
         let contador = 0;
-        let total = 0;
+        let totalAmount = 0;
 
         cart.forEach((item) => {
-            contador += item.quantity;
-            total += item.quantity * item.price;
+            const quantity = Number(item.quantity) || 0;
+            const price = Number(item.price) || 0;
+    
+            contador += quantity;
+            totalAmount += quantity * price;
         });
 
         setCount(contador);
-        setTotal(total);
+        setTotal(totalAmount);
     }, [cart]);
 
     function toggleCart() {
@@ -42,14 +45,18 @@ function OrderProvider({ children }) {
         });
     }
 
+    const limpiarCarrito = () => {
+        setCart([]);
+    };
 
-
-
-    //FUNCIONES PARA CAMBIAR CANTIDADES Y ELIMINAR DEL CARRITO CON + Y -
-
-
-
-
+    const finalizarOrden = () => {
+        if (cart.length === 0) {
+            alert("El carrito está vacío.");
+            return;
+        }
+        alert("Compra finalizada con éxito.");
+        setCart([]);
+    };
 
     return (
         <OrderContext.Provider
@@ -60,6 +67,8 @@ function OrderProvider({ children }) {
                 addProd,
                 count,
                 total,
+                limpiarCarrito,
+                finalizarOrden,
             }}
         >
             {children}

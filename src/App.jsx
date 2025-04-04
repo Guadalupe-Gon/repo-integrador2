@@ -9,6 +9,7 @@ import Nosotros from './pages/Nosotros/Nosotros'
 import AdminProd from './pages/AdminProd/AdminProd'
 import DetalleProd from './pages/DetalleProd/DetalleProd'
 import AdminUser from './pages/AdminUser/AdminUser'
+import OrderSidebar from './components/OrderSidebar/OrderSidebar'
 
 
 function App() {
@@ -16,25 +17,25 @@ function App() {
   return (
     <>
 
-      <main className="main-container">
+        <main className="main-container">
 
-        <Header />
+          <Header />
 
-        {/* <OrderSidebar /> */}
+          <OrderSidebar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Contacto" element={<Contacto />} />
-          <Route path="/Registro" element={<Registro />} />
-          <Route path="/Nosotros" element={<Nosotros />} />
-          <Route path="/AdminProd" element={<AdminProd />} />
-          <Route path="/AdminUser" element={<AdminUser />} />
-          <Route path="/DetalleProd/:id" element={<DetalleProd />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Contacto" element={<Contacto />} />
+            <Route path="/Registro" element={<Registro />} />
+            <Route path="/Nosotros" element={<Nosotros />} />
+            <Route path="/AdminProd" element={<AdminProd />} />
+            <Route path="/AdminUser" element={<AdminUser />} />
+            <Route path="/DetalleProd/:id" element={<DetalleProd />} />
+          </Routes>
 
-        <Footer />
+          <Footer />
 
-      </main>
+        </main>
 
     </>
   )

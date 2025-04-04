@@ -19,22 +19,21 @@ html {
 }
 
 body {
+    background-color: var(--secundary-color);
     font-family: 'Delius';
     color: var(--text-color);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: var(--secundary-color);
     padding-top: 2.3rem;
 }
 
 .main-container {
-    padding: 1rem;
+    padding: .25rem;
     flex-grow: 2;
 }
 
 .main-footer {
-    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,24 +82,6 @@ body {
         font-size: 1rem;
     }
 }
-
-
-/*FORMATO PARA LOS ICONOS DEL FOOTER, APLICAR SI LE PONEMOS LINK DE REDIRECCIÓN*/
-
-/* .footer-social svg,
-.footer-info svg,
-.footer-contact svg {
-    font-size: 20px;
-    color: var(--text-color);
-
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.2);
-        transition: color 0.3s ease-in-out;
-        color: #b7753f;
-    }
-} */
-
 
 .logo2 img {
     margin: .5rem;

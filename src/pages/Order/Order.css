@@ -1,33 +1,101 @@
-.order-table {
-    width: 100%;
-    max-width: 900px;
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #afd5ae;
+    --secundary-color: #E9EDC9;
+    --terciary-color: #cfcec4;
+    --text-color: #35322b;
+    --hover-color: #f2bb85;
+}
+
+body {
+    background-color: var(--secundary-color);
+    font-family: 'Delius';
+    color: var(--text-color);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.3rem;
+}
+
+.order-container {
     border-collapse: collapse;
+    width: 100%;
+}
+
+.order-table {
+    max-width: 900px;
     margin: 0 auto;
+    background-color: var(--terciary-color);
+    color: var(--text-color);
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: .5rem;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+}
 
-    td,
-    th {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
+.order-table td,
+.order-table th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
 
+.order-table th {
+    background-color: var(--hover-color);
+    font-weight: bold;
+    width: 100%;
+}
 
-    }
+.order-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f91b;
+}
 
-    tbody {
+.order-table tfoot td {
+    font-weight: bold;
+    text-align: right;
+}
 
-        tr {
-            &:nth-child(odd) {
-                background-color: #f9f9f91b;
-            }
-        }
-    }
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
 
-    tfoot {
-        tr {
-            td {
-                font-weight: bold;
-                text-align: right;
-            }
+    .button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--secundary-color);
+        color: var(--text-color);
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        border: solid 2px black;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        margin-top: 1rem;
+        font-family: "Delius";
+
+        &:hover {
+            background-color: var(--hover-color);
         }
     }
 }
