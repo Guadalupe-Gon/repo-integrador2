@@ -34,7 +34,7 @@ body {
 }
 
 .order-table {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
     background-color: var(--terciary-color);
     color: var(--text-color);
@@ -68,6 +68,7 @@ body {
 .order-table tfoot td {
     font-weight: bold;
     text-align: right;
+    font-size: 1.2rem;
 }
 
 .order-buttons {
@@ -97,5 +98,49 @@ body {
         &:hover {
             background-color: var(--hover-color);
         }
+    }
+}
+
+.order-product-image {
+    width: 75%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-controls button {
+    background-color: var(--terciary-color);
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: .75rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+.quantity-controls .delete {
+    background-color: var(--hover-color);
+    color: black;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: .75rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: red;
+        color: white;
     }
 }

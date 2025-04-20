@@ -39,7 +39,9 @@ header {
 
 .main-header {
     display: flex;
-    position: absolute;
+    position: fixed; 
+    top: 0;
+    left: 0;
     height: 9%;
     width: 100%;
     justify-content: space-between;
@@ -133,7 +135,7 @@ header {
         overflow: hidden;
 
         .nav-list {
-            padding: 1rem 0;
+            padding: .2rem 0;
             height: 100%;
 
             li.nav-item {

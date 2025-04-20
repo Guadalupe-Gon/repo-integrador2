@@ -41,7 +41,7 @@ body {
     background: linear-gradient(to left, var(--primary-color), #feb47b);
     color: var(--text-color);
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     margin: 0;
 
     section {

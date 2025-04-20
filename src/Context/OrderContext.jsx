@@ -11,27 +11,49 @@ function OrderProvider({ children }) {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
+        if (cart.length === 0) {
+            localStorage.removeItem("cart");
+        } else {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    }, [cart]);
+
+    useEffect(() => {
+        const cartLocalStorage = JSON.parse(localStorage.getItem("cart"));
+        if (cartLocalStorage) {
+            setCart(cartLocalStorage);
+        }
+    }, []);
+
+    useEffect(() => {
         let contador = 0;
-        let totalAmount = 0;
+        let total = 0;
 
         cart.forEach((item) => {
             const quantity = Number(item.quantity) || 0;
             const price = Number(item.price) || 0;
-    
+
             contador += quantity;
-            totalAmount += quantity * price;
+            total += quantity * price;
         });
 
         setCount(contador);
-        setTotal(totalAmount);
+        setTotal(total);
     }, [cart]);
 
     function toggleCart() {
-        console.log("toggleCart clicked");
         setIsOpen(!isOpen);
     }
 
     function addProd(prod) {
+        let priceNumber = prod.price;
+
+        if (typeof priceNumber === "string") {
+            priceNumber = priceNumber.replace(/\./g, "");
+            priceNumber = priceNumber.replace(",", ".");
+            priceNumber = parseFloat(priceNumber);
+        }
+
         setCart((prevCart) => {
             const prodInCart = prevCart.find((item) => item.id === prod.id);
 
@@ -40,10 +62,36 @@ function OrderProvider({ children }) {
                     item.id === prod.id ? { ...item, quantity: item.quantity + 1 } : item
                 );
             } else {
-                return [...prevCart, { ...prod, quantity: 1 }];
+                return [...prevCart, { ...prod, quantity: 1, price: priceNumber }];
             }
         });
     }
+
+    function aumentarCantidad(id) {
+        setCart((prevCart) =>
+            prevCart.map((item) =>
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+            )
+        );
+    }
+
+    function disminuirCantidad(id) {
+        setCart((prevCart) =>
+            prevCart
+                .map((item) =>
+                    item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+                )
+                .filter(item => item.quantity > 0) // elimina el producto si la cantidad es 0
+        );
+    }
+
+    function eliminarProducto(id) {
+        setCart((prevCart) =>
+            prevCart.filter((item) => item.id !== id)
+        );
+    }
+
+
 
     const limpiarCarrito = () => {
         setCart([]);
@@ -58,6 +106,8 @@ function OrderProvider({ children }) {
         setCart([]);
     };
 
+
+
     return (
         <OrderContext.Provider
             value={{
@@ -69,8 +119,12 @@ function OrderProvider({ children }) {
                 total,
                 limpiarCarrito,
                 finalizarOrden,
+                aumentarCantidad,
+                disminuirCantidad,
+                eliminarProducto,
             }}
         >
+
             {children}
         </OrderContext.Provider>
     );

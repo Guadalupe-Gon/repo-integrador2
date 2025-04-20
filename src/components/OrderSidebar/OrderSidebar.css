@@ -30,15 +30,16 @@ body {
 
 .order-sidebar {
     position: fixed;
-    top: 0;
+    top: -2px;
     right: -410px;
-    width: 500px;
+    width: 600px;
     height: auto;
     z-index: 10;
     margin-top: 64px;
     padding: 24px;
     background-color: var(--primary-color);
     box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    border: #000000 solid 1px;
     transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     color: var(--text-color);
     font-family: 'Delius', sans-serif;
@@ -72,4 +73,17 @@ body {
 
 .order-sidebar .close-btn:hover {
     background-color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+    .order-sidebar {
+        width: 100%;
+        right: -100%;
+        margin-top: 60px;
+        padding: 16px;
+    }
+
+    .order-sidebar.active {
+        right: 0;
+    }
 }

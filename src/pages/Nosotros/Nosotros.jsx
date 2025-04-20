@@ -12,7 +12,7 @@ export default function Nosotros() {
     return (
 
         <main className="nosotros">
-            <MainTitle title="ACERCA DE NOSOTROS" />
+            <MainTitle title="BAZAR BOUTIQUE" />
             <section className="empresa">
                 <h2>Nuestra empresa</h2>
                 <p>
