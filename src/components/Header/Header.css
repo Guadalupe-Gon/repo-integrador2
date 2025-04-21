@@ -32,7 +32,7 @@ header {
     position: relative;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
     width: 100%;
     background: linear-gradient(to left, #feb47b, var(--primary-color));
 }
@@ -120,7 +120,7 @@ header {
     .logo {
         display: flex;
         align-items: center;
-        z-index: 1;
+        z-index: 50;
 
         .nav-logo {
             width: 45px;
@@ -135,7 +135,7 @@ header {
         overflow: hidden;
 
         .nav-list {
-            padding: .2rem 0;
+            padding: 0;
             height: 100%;
 
             li.nav-item {
@@ -294,7 +294,7 @@ header {
         position: fixed;
         left: -100%;
         width: 100%;
-        top: 60px;
+        top: 85px;
         height: 100vh;
         background: linear-gradient(to left, #feb47b, var(--primary-color));
         transition: left 0.3s ease-in-out;
