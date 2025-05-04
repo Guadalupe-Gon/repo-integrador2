@@ -39,7 +39,7 @@ header {
 
 .main-header {
     display: flex;
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     height: 9%;
@@ -169,7 +169,7 @@ header {
                 align-items: center;
                 justify-content: center;
                 position: absolute;
-                top: -12px;
+                top: -10px;
                 right: -5px;
                 width: 20px;
                 height: 20px;
@@ -316,10 +316,11 @@ header {
             height: 16px;
             font-size: 0.65rem;
             position: absolute;
-            top: 10px;
-            right: -3px;
-            left: 30px;
-            bottom: 80px;
+            top: -5px;
+            right: -5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

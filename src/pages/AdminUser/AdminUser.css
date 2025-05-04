@@ -118,7 +118,7 @@ body {
     margin-bottom: 2rem;
 }
 
-.user-form input {
+.user-form input, select {
     width: 100%;
     padding: 0.7rem;
     margin: .5rem auto;

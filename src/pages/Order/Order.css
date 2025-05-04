@@ -29,12 +29,14 @@ body {
 }
 
 .order-container {
-    border-collapse: collapse;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .order-table {
-    max-width: 100%;
+    max-width: 50%;
     margin: 0 auto;
     background-color: var(--terciary-color);
     color: var(--text-color);
@@ -45,7 +47,7 @@ body {
     padding: .5rem;
     font-size: 16px;
     text-align: center;
-    padding: 10px;
+    border-collapse: collapse;
 }
 
 .order-table td,
@@ -73,10 +75,11 @@ body {
 
 .order-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     width: 100%;
-    max-width: 400px;
-    margin: 10px auto;
+    margin-top: 1rem;
 
     .button {
         display: inline-block;
