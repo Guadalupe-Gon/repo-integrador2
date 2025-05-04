@@ -34,7 +34,7 @@ body {
     width: 600px;
     height: auto;
     z-index: 10;
-    margin-top: 80px;
+    margin-top: 50px;
     margin-right: 5px;
     padding: 24px;
     background-color: var(--primary-color);

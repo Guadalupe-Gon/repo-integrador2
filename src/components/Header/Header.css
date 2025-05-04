@@ -306,21 +306,9 @@ header {
     }
 }
 
-@media (max-width: 600px) {
-    .cart-container {
-        font-size: 20px;
-        position: relative;
-
-        .cart-count {
-            width: 16px;
-            height: 16px;
-            font-size: 0.65rem;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+@media (max-width: 768px) {
+    .main-header .user-info .cart-container .cart-count {
+        top: 0 !important;
+        right: -5px !important;
     }
 }

@@ -160,7 +160,7 @@ export default function AdminUsers() {
                     onChange={handleChange}
                     required
                     type="password"
-                    placeholder='Repetir ontraseña' />
+                    placeholder='Repetir contraseña' />
                 <input
                     type='date'
                     name='date'
