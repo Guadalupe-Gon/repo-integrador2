@@ -10,6 +10,7 @@ import AdminProd from './pages/AdminProd/AdminProd'
 import DetalleProd from './pages/DetalleProd/DetalleProd'
 import AdminUser from './pages/AdminUser/AdminUser'
 import OrderSidebar from './components/OrderSidebar/OrderSidebar'
+import Login from './pages/Login/Login'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/AdminProd" element={<AdminProd />} />
             <Route path="/AdminUser" element={<AdminUser />} />
             <Route path="/DetalleProd/:id" element={<DetalleProd />} />
+            <Route path="/Login" element={<Login />} />
           </Routes>
 
           <Footer />

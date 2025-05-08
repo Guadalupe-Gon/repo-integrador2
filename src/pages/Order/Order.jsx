@@ -64,7 +64,7 @@ export default function Order() {
 
                 <div className="order-buttons">
                     <button className="button" onClick={finalizarOrden}>Finalizar compra</button>
-                    <button className="button" onClick={limpiarCarrito}>Vaciar carrito</button>
+                    <button className="button2" onClick={limpiarCarrito}>Vaciar carrito</button>
                 </div>
             </div>
         </>

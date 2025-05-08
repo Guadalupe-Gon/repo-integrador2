@@ -70,9 +70,6 @@ body {
                 font-size: 1.2rem;
                 margin-top: .8rem;
                 margin-bottom: .8rem;
-                text-decoration: underline;
-                text-decoration-thickness: .1rem;
-                text-underline-offset: .5rem;
             }
 
             .input-group {

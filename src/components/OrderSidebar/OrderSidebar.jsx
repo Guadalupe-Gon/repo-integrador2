@@ -1,6 +1,6 @@
 import { useOrder } from "../../Context/OrderContext";
 import Order from "../../pages/Order/Order";
-import "./OrderSidebar.css"
+import "./OrderSidebar.css";
 
 export default function OrderSidebar() {
 

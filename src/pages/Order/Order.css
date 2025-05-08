@@ -36,11 +36,10 @@ body {
 }
 
 .order-table {
-    max-width: 50%;
-    margin: 0 auto;
+    min-width: 350px;
+    width: 100%;
     background-color: var(--terciary-color);
     color: var(--text-color);
-    border: 2px solid black;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     overflow: hidden;
@@ -54,7 +53,7 @@ body {
 .order-table th {
     padding: 10px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #0d0c0c;
 }
 
 .order-table th {
@@ -64,13 +63,13 @@ body {
 }
 
 .order-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f91b;
+    background-color: #f9f9f930;
 }
 
 .order-table tfoot td {
     font-weight: bold;
     text-align: right;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .order-buttons {
@@ -81,7 +80,7 @@ body {
     width: 100%;
     margin-top: 1rem;
 
-    .button {
+    .button, .button2 {
         display: inline-block;
         padding: 0.5rem 1rem;
         background-color: var(--secundary-color);
@@ -97,11 +96,16 @@ body {
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         margin-top: 1rem;
         font-family: "Delius";
-
-        &:hover {
-            background-color: var(--hover-color);
-        }
     }
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+}
+
+.button2:hover {
+    background-color: red;
+    color: white;
 }
 
 .order-product-image {
@@ -150,13 +154,19 @@ body {
 
 @media (max-width: 600px) {
     .order-table {
-        font-size: 14px;
+        font-size: 10px;
         padding: 5px;
     }
 
     .order-table td,
     .order-table th {
         padding: 8px;
+    }
+
+    .order-table tfoot td {
+        font-weight: bold;
+        text-align: right;
+        font-size: .7rem;
     }
 
     .order-buttons {
@@ -166,7 +176,6 @@ body {
     }
 
     .order-buttons .button {
-        width: 100%;
         margin-top: 0;
     }
 

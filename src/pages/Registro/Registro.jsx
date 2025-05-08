@@ -31,8 +31,8 @@ export default function Registro() {
             tempErrors.Mail = "Correo electrónico no válido.";
         }
 
-        if (formData.Contraseña.length < 6 || formData.Contraseña.length > 10) {
-            tempErrors.Contraseña = "La contraseña debe tener entre 6 y 10 caracteres.";
+        if (formData.Contraseña.length < 4 || formData.Contraseña.length > 10) {
+            tempErrors.Contraseña = "La contraseña debe tener entre 4 y 10 caracteres.";
         }
 
         if (formData.Contraseña !== formData.RepetirContraseña) {
@@ -100,27 +100,27 @@ export default function Registro() {
                         </label>
                         <input
                             id="Correo"
-                            name="Mail"
-                            value={formData.Mail}
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                             required
                             type="email"
                             placeholder='guadalupe.goncalves@gmail.com' />
-                        {errors.Mail && <p className="error">{errors.Mail}</p>}
+                        {errors.email && <p className="error">{errors.email}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="Pass">
+                        <label htmlFor="password">
                             Contraseña
                         </label>
                         <input
                             id="Pass"
-                            name="Contraseña"
+                            name="password"
                             value={formData.Contraseña}
                             onChange={handleChange}
                             required
                             type="password"
-                            placeholder='********' />
-                        {errors.Contraseña && <p className="error">{errors.Contraseña}</p>}
+                            placeholder='****' />
+                        {errors.password && <p className="error">{errors.password}</p>}
                     </div>
                     <div className="input-group">
                         <label htmlFor="RepetirPass">
@@ -133,7 +133,7 @@ export default function Registro() {
                             onChange={handleChange}
                             required
                             type="password"
-                            placeholder='********' />
+                            placeholder='****' />
                         {errors.RepetirContraseña && <p className="error">{errors.RepetirContraseña}</p>}
                     </div>
                     <div className="input-group">

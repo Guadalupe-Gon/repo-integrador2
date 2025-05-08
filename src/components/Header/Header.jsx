@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router";
 import "./Header.css";
 import React from 'react';
-import { useOrder } from "../../Context/OrderContext";
+import { useOrder } from "../../context/OrderContext";
+import { useUser } from "../../Context/UserContext";
+
+
 
 export default function Header() {
 
@@ -14,6 +17,13 @@ export default function Header() {
     }
 
     const { count, toggleCart } = useOrder()
+
+    const { user, logout } = useUser();
+
+    const [showUserMenu, setShowUserMenu] = React.useState(false);
+    const toggleUserMenu = () => {
+        setShowUserMenu(!showUserMenu);
+    };
 
     return (
         <header className="main-header">
@@ -52,16 +62,6 @@ export default function Header() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/AdminProd">
-                            PRODUCTOS
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/AdminUser">
-                            USUARIOS
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
                         <NavLink className="nav-link" to="/Nosotros">
                             NOSOTROS
                         </NavLink>
@@ -70,13 +70,38 @@ export default function Header() {
             </nav>
 
             <div className="user-info">
-                <div className="cart-container">
+                <div className="cart-container user-menu-toggle" onClick={toggleUserMenu}>
                     <FontAwesomeIcon icon={faUser} />
+                    {showUserMenu && (
+                        <div className="user-dropdown">
+                            {!user && (
+                                <NavLink to="/login" className="dropdown-item">
+                                    LOGIN
+                                </NavLink>
+                            )}
+                            {user?.role === "admin" && (
+                                <NavLink className="dropdown-item" to="/AdminProd">
+                                    PRODUCTOS
+                                </NavLink>
+                            )}
+                            {user?.role === "admin" && (
+                                <NavLink className="dropdown-item" to="/AdminUser">
+                                    USUARIOS
+                                </NavLink>
+                            )}
+                            {user && (
+                                <NavLink to="/" className="dropdown-item" onClick={() => logout()}>
+                                    LOGOUT
+                                </NavLink>
+                            )}
+                        </div>
+                    )}
                 </div>
-                <div className="cart-container" onClick={ () => toggleCart() }>
+
+                <div className="cart-container" onClick={() => toggleCart()}>
                     <FontAwesomeIcon icon={faShoppingCart} />
                     <span className="cart-count">
-                        { count }
+                        {count}
                     </span>
                 </div>
             </div>
