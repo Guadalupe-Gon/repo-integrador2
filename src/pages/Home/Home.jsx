@@ -65,6 +65,7 @@ export default function Home() {
 
             <main className="main-container">
                 <MainTitle title="CONOCÉ NUESTROS PRODUCTOS" />
+                
                 <section className="section-products">
 
                     <div className="product-container">

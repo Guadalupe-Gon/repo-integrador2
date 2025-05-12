@@ -5,31 +5,28 @@ import './AdminProd.css';
 import MainTitle from '../../components/Main-title/MainTitle';
 import axios from 'axios';
 
-// const URL = "https://67d1918190e0670699baa003.mockapi.io/Productos";
-
 const URL = import.meta.env.VITE_API_URL;
-
-
 
 
 export default function AdminProd() {
     const [products, setProducts] = useState([]);
     const [form, setForm] = useState({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
     const [editingProduct, setEditingProduct] = useState(null);
+    
+    useEffect(() => {
+        getProducts();
+    }, []);
 
     async function getProducts() {
         try {
             const response = await axios.get(`${URL}/products`);
             const productos = response.data.products;
+            
             setProducts(productos);
         } catch (error) {
             console.warn(error);
         }
     }
-
-    useEffect(() => {
-        getProducts();
-    }, []);
 
     async function handleAddOrUpdateProduct(e) {
         e.preventDefault();
@@ -41,25 +38,23 @@ export default function AdminProd() {
         formData.append('descriptionDetailed', form.descriptionDetailed);
         formData.append('createdAt', form.createdAt);
 
-        if (form.image) {
+        if (form.image?. length) {
             formData.append('image', form.image[0]);
         }
 
         try {
             if (editingProduct) {
-                await axios.put(`${URL}/${editingProduct._id}`, formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                });
+                await axios.put(`${URL}/${editingProduct._id}`, formData);
                 alert('Producto actualizado con éxito');
             } else {
-                await axios.post(URL, formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                });
+                await axios.post(URL, formData);
                 alert('Producto agregado con éxito');
             }
+
             setForm({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
             setEditingProduct(null);
             getProducts();
+            
         } catch (error) {
             console.log(error);
             alert('Error al procesar el producto');
@@ -116,7 +111,7 @@ export default function AdminProd() {
                                 <td className="image-cell">
                                     <img alt={product.name}
                                         className="table-image"
-                                        src={`${import.meta.env.VITE_FILES_URL}/products/${product.image[0]}`} />
+                                        src={`${import.meta.env.VITE_FILES_URL}/products/${product.image}`} />
                                 </td>
                                 <td className="product-cell">{product.name}</td>
                                 <td className="description-cell">{product.descriptionShort}</td>
