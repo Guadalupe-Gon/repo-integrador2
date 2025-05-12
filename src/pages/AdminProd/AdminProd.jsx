@@ -5,22 +5,26 @@ import './AdminProd.css';
 import MainTitle from '../../components/Main-title/MainTitle';
 import axios from 'axios';
 
-const URL = "https://67d1918190e0670699baa003.mockapi.io/Productos";
+// const URL = "https://67d1918190e0670699baa003.mockapi.io/Productos";
+
+const URL = import.meta.env.VITE_API_URL;
+
+
+
 
 export default function AdminProd() {
     const [products, setProducts] = useState([]);
-    const [form, setForm] = useState({ name: '', price: '', descriptionShort: '', image: '', createdAt: '', category: '' });
+    const [form, setForm] = useState({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
     const [editingProduct, setEditingProduct] = useState(null);
 
     async function getProducts() {
         try {
-            const response = await axios.get(URL);
-            setProducts(response.data);
+            const response = await axios.get(`${URL}/products`);
+            const productos = response.data.products;
+            setProducts(productos);
         } catch (error) {
             console.warn(error);
         }
-
-        // AGREGAR ACÁ LO DE FORM DATA 
     }
 
     useEffect(() => {
@@ -29,27 +33,43 @@ export default function AdminProd() {
 
     async function handleAddOrUpdateProduct(e) {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('name', form.name);
+        formData.append('price', form.price);
+        formData.append('descriptionShort', form.descriptionShort);
+        formData.append('descriptionDetailed', form.descriptionDetailed);
+        formData.append('createdAt', form.createdAt);
+
+        if (form.image) {
+            formData.append('image', form.image[0]);
+        }
+
         try {
             if (editingProduct) {
-                await axios.put(`${URL}/${editingProduct.id}`, form);
+                await axios.put(`${URL}/${editingProduct._id}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
                 alert('Producto actualizado con éxito');
             } else {
-                await axios.post(URL, form);
+                await axios.post(URL, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
                 alert('Producto agregado con éxito');
             }
-            setForm({ name: '', price: '', descriptionShort: '', image: '', createdAt: '', category: '' });
+            setForm({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
             setEditingProduct(null);
             getProducts();
         } catch (error) {
-            console.log(error)
+            console.log(error);
             alert('Error al procesar el producto');
         }
     }
 
-    async function handleDeleteProduct(id) {
+    async function handleDeleteProduct(_id) {
         if (window.confirm('¿Seguro que quieres eliminar este producto?')) {
             try {
-                await axios.delete(`${URL}/${id}`);
+                await axios.delete(`${URL}/${_id}`);
                 alert('Producto eliminado con éxito');
                 getProducts();
             } catch (error) {
@@ -65,7 +85,13 @@ export default function AdminProd() {
     }
 
     function handleChange(e) {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, value, files } = e.target;
+
+        if (name === 'image') {
+            setForm({ ...form, image: files[0] });
+        } else {
+            setForm({ ...form, [name]: value });
+        }
     }
 
     return (
@@ -86,9 +112,11 @@ export default function AdminProd() {
                     </thead>
                     <tbody>
                         {products.map(product => (
-                            <tr key={product.id}>
+                            <tr key={product._id}>
                                 <td className="image-cell">
-                                    <img alt={product.name} className="table-image" src={product.image} />
+                                    <img alt={product.name}
+                                        className="table-image"
+                                        src={`${import.meta.env.VITE_FILES_URL}/products/${product.image[0]}`} />
                                 </td>
                                 <td className="product-cell">{product.name}</td>
                                 <td className="description-cell">{product.descriptionShort}</td>
@@ -98,7 +126,7 @@ export default function AdminProd() {
                                         <button className="btn" title="Editar" onClick={() => handleEditProduct(product)}>
                                             <FontAwesomeIcon icon={faSquarePen} />
                                         </button>
-                                        <button className="btn" title="Eliminar" onClick={() => handleDeleteProduct(product.id)}>
+                                        <button className="btn" title="Eliminar" onClick={() => handleDeleteProduct(product._id)}>
                                             <FontAwesomeIcon icon={faTrashCan} />
                                         </button>
                                     </div>
@@ -109,8 +137,8 @@ export default function AdminProd() {
                 </table>
             </div>
 
-            <MainTitle title="Tabla de acciones"/>
-            
+            <MainTitle title="Tabla de acciones" />
+
             <form className='product-form' onSubmit={handleAddOrUpdateProduct}>
                 <input
                     type='text'
@@ -134,10 +162,9 @@ export default function AdminProd() {
                     required>
                 </textarea>
                 <input
-                    type='url'
+                    type='file'
+                    accept='image/*'
                     name='image'
-                    placeholder='URL de la imagen'
-                    value={form.image}
                     onChange={handleChange}
                     required />
                 <input
