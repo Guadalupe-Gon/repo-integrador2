@@ -1,21 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Registro.css';
 import MainTitle from '../../components/Main-title/MainTitle';
-import { useState } from "react";
 import axios from 'axios';
 
 export default function Registro() {
-    
     const [formData, setFormData] = useState({
-        Nombre: "",
-        Mail: "",
-        Contraseña: "",
-        RepetirContraseña: "",
-        FechaNacimiento: "",
-        Provincia: "",
-        Imagen: null,
-        Observaciones: ""
-        // isAdmin: false,
+        name: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
+        birthDate: "",
+        province: "",
+        observations: ""
     });
 
     const [errors, setErrors] = useState({});
@@ -23,28 +19,28 @@ export default function Registro() {
     const validate = () => {
         let tempErrors = {};
 
-        if (!formData.Nombre.match(/^[A-Za-zÁÉÍÓÚáéíóúÄËÏÖÜäëïöüÂÊÎÔÛâêîôûÇçÑñŃń' -]+$/)) {
-            tempErrors.Nombre = "El nombre solo debe contener letras, espacios, apóstrofes y guiones.";
+        if (!formData.name.match(/^[A-Za-zÁÉÍÓÚáéíóúÄËÏÖÜäëïöüÂÊÎÔÛâêîôûÇçÑñŃń' -]+$/)) {
+            tempErrors.name = "El nombre solo debe contener letras, espacios, apóstrofes y guiones.";
         }
 
-        if (!formData.Mail.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)) {
-            tempErrors.Mail = "Correo electrónico no válido.";
+        if (!formData.email.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)) {
+            tempErrors.email = "Correo electrónico no válido.";
         }
 
-        if (formData.Contraseña.length < 4 || formData.Contraseña.length > 10) {
-            tempErrors.Contraseña = "La contraseña debe tener entre 4 y 10 caracteres.";
+        if (formData.password.length < 4 || formData.password.length > 10) {
+            tempErrors.password = "La contraseña debe tener entre 4 y 10 caracteres.";
         }
 
-        if (formData.Contraseña !== formData.RepetirContraseña) {
-            tempErrors.RepetirContraseña = "Las contraseñas no coinciden.";
+        if (formData.password !== formData.repeatPassword) {
+            tempErrors.repeatPassword = "Las contraseñas no coinciden.";
         }
 
-        if (!formData.FechaNacimiento) {
-            tempErrors.FechaNacimiento = "Seleccione una fecha de nacimiento.";
+        if (!formData.birthDate) {
+            tempErrors.birthDate = "Seleccione una fecha de nacimiento.";
         }
 
-        if (!formData.Provincia) {
-            tempErrors.Provincia = "Seleccione una provincia.";
+        if (!formData.province) {
+            tempErrors.province = "Seleccione una provincia.";
         }
 
         setErrors(tempErrors);
@@ -63,7 +59,23 @@ export default function Registro() {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post("https://67d1918190e0670699baa003.mockapi.io/Usuarios", formData);
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/users`,
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        password: formData.password,
+                        birthDate: formData.birthDate,
+                        province: formData.province,
+                        observations: formData.observations,
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+
                 console.log("Usuario registrado:", response.data);
                 alert("Usuario registrado con éxito.");
             } catch (error) {
@@ -75,29 +87,26 @@ export default function Registro() {
         }
     };
 
+
     return (
         <main className="main-container">
             <MainTitle title="FORMULARIO DE REGISTRO" />
             <div className="form-container">
                 <form className="register-form" onSubmit={handleSubmit}>
                     <div className="input-group">
-                        <label htmlFor="Name">
-                            Nombre completo
-                        </label>
+                        <label htmlFor="Name">Nombre completo</label>
                         <input
                             id="Name"
-                            name="Nombre"
-                            value={formData.Nombre}
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             required
                             type="text"
                             placeholder='María Guadalupe Gonçalves' />
-                        {errors.Nombre && <p className="error">{errors.Nombre}</p>}
+                        {errors.name && <p className="error">{errors.name}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="Correo">
-                            Correo electrónico
-                        </label>
+                        <label htmlFor="Correo">Correo electrónico</label>
                         <input
                             id="Correo"
                             name="email"
@@ -109,13 +118,11 @@ export default function Registro() {
                         {errors.email && <p className="error">{errors.email}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="password">
-                            Contraseña
-                        </label>
+                        <label htmlFor="Pass">Contraseña</label>
                         <input
                             id="Pass"
                             name="password"
-                            value={formData.Contraseña}
+                            value={formData.password}
                             onChange={handleChange}
                             required
                             type="password"
@@ -123,40 +130,34 @@ export default function Registro() {
                         {errors.password && <p className="error">{errors.password}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="RepetirPass">
-                            Repetir contraseña
-                        </label>
+                        <label htmlFor="RepetirPass">Repetir contraseña</label>
                         <input
                             id="RepetirPass"
-                            name="RepetirContraseña"
-                            value={formData.RepetirContraseña}
+                            name="repeatPassword"
+                            value={formData.repeatPassword}
                             onChange={handleChange}
                             required
                             type="password"
                             placeholder='****' />
-                        {errors.RepetirContraseña && <p className="error">{errors.RepetirContraseña}</p>}
+                        {errors.repeatPassword && <p className="error">{errors.repeatPassword}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="Nac">
-                            Fecha de nacimiento
-                        </label>
+                        <label htmlFor="Nac">Fecha de nacimiento</label>
                         <input
                             id="Nac"
-                            name="FechaNacimiento"
-                            value={formData.FechaNacimiento}
+                            name="birthDate"
+                            value={formData.birthDate}
                             onChange={handleChange}
                             required
                             type="date" />
-                        {errors.FechaNacimiento && <p className="error">{errors.FechaNacimiento}</p>}
+                        {errors.birthDate && <p className="error">{errors.birthDate}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="Provincia">
-                            Seleccione su provincia
-                        </label>
+                        <label htmlFor="Provincia">Seleccione su provincia</label>
                         <select
                             id="Provincia"
-                            name="Provincia"
-                            value={formData.Provincia}
+                            name="province"
+                            value={formData.province}
                             onChange={handleChange}
                             required>
                             <option value="">Seleccione...</option>
@@ -182,27 +183,25 @@ export default function Registro() {
                             <option value="Santa Cruz">Santa Cruz</option>
                             <option value="Santa Fe">Santa Fe</option>
                             <option value="Santiago del Estero">Santiago del Estero</option>
-                            <option value="Tierr del Fuego">Tierra del Fuego</option>
+                            <option value="Tierra del Fuego">Tierra del Fuego</option>
                             <option value="Tucumán">Tucumán</option>
                         </select>
-                        {errors.Provincia && <p className="error">{errors.Provincia}</p>}
+                        {errors.province && <p className="error">{errors.province}</p>}
                     </div>
                     <div className="input-group">
-                        <label htmlFor="Obs">
-                            Observaciones
-                        </label>
+                        <label htmlFor="Obs">Observaciones</label>
                         <textarea
                             id="Obs"
-                            name="Observaciones"
-                            value={formData.Observaciones}
+                            name="observations"
+                            value={formData.observations}
                             onChange={handleChange}
                             maxLength="200"
                             rows="4"
                             placeholder="Máximo 200 caracteres">
                         </textarea>
                     </div>
-                    <div className="button">
-                        <button className="btn" type="submit">
+                    <div className="button3">
+                        <button className="btn3" type="submit">
                             Registrarse
                         </button>
                     </div>

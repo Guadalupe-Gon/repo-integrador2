@@ -34,7 +34,7 @@ body {
     .btn-submit {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        padding: 0.25rem 0.75rem;
+        padding: 0.5rem 0.75rem;
         background-color: var(--secundary-color);
         color: var(--text-color);
         border: 2px solid var(--text-color);

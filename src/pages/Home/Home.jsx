@@ -2,38 +2,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MainTitle from "../../components/Main-title/MainTitle";
 import "./Banner.css";
 import "./Caracteristicas.css";
-import "./Card/Card.css"
-import { faSackDollar } from "@fortawesome/free-solid-svg-icons/faSackDollar";
-import { faTruck } from "@fortawesome/free-solid-svg-icons/faTruck";
-import { faTruckFast } from "@fortawesome/free-solid-svg-icons/faTruckFast";
-import { faBuildingUser } from "@fortawesome/free-solid-svg-icons/faBuildingUser";
+import "./Card/Card.css";
+import { faSackDollar, faTruck, faTruckFast, faBuildingUser } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card/Card";
 
-const URL = "https://67d1918190e0670699baa003.mockapi.io"
+const URL = import.meta.env.VITE_API_URL;
+const FILES_URL = import.meta.env.VITE_FILES_URL;
 
 
 export default function Home() {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
 
     async function getProducts() {
         try {
-            const response = await axios.get(`${URL}/Productos`);
-            console.log(response.data)
-            setProducts(response.data)
-        }
-        catch (error) {
-            console.warn(error)
+            const response = await axios.get(`${URL}/products`);
+            setProducts(response.data.products);
+        } catch (error) {
+            console.warn("Error al obtener productos:", error);
         }
     }
-
-    console.log("PRODUCTS list", products);
 
     useEffect(() => {
-        getProducts()
-    }
-        , [])
+        getProducts();
+    }, []);
 
     return (
         <div>
@@ -51,13 +44,13 @@ export default function Home() {
 
                     <div className="slider-content">
                         <div className="slide slide-1">
-                            <img alt="banner-1" src="public/images/BANNER1.jpg" />
+                            <img alt="banner-1" src="/images/BANNER1.jpg" />
                         </div>
                         <div className="slide slide-2">
-                            <img alt="banner-2" src="public/images/BANNER2.jpg" />
+                            <img alt="banner-2" src="/images/BANNER2.jpg" />
                         </div>
                         <div className="slide slide-3">
-                            <img alt="banner-3" src="public/images/BANNER3.jpg" />
+                            <img alt="banner-3" src="/images/BANNER3.jpg" />
                         </div>
                     </div>
                 </div>
@@ -65,23 +58,21 @@ export default function Home() {
 
             <main className="main-container">
                 <MainTitle title="CONOCÉ NUESTROS PRODUCTOS" />
-                
                 <section className="section-products">
-
                     <div className="product-container">
-                        {products.map((product) => {
-                            return (
-                                <Card
-                                    key={product.id}
-                                    id={product.id}
-                                    name={product.name}
-                                    price={product.price}
-                                    description={product.descriptionShort}
-                                    image={product.image}
-                                />
-                            )
-                        })}
-
+                        {products.map((product) => (
+                            <Card
+                                key={product._id}
+                                id={product._id}
+                                name={product.name}
+                                price={product.price.toLocaleString("es-AR", {
+                                    style: "currency",
+                                    currency: "ARS",
+                                })}
+                                description={product.descriptionShort}
+                                image={`${FILES_URL}/products/${product.image}`}
+                            />
+                        ))}
                     </div>
                 </section>
 
@@ -105,5 +96,5 @@ export default function Home() {
                 </section>
             </main>
         </div>
-    )
+    );
 }

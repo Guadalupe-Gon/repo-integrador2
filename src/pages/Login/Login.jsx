@@ -65,7 +65,7 @@ export default function Login() {
 
                     <div className="btn">
                         <button type="submit" className="btn-submit" disabled={!isValid}>
-                            Login
+                            LOGIN
                         </button>
                     </div>
 

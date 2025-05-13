@@ -21,7 +21,16 @@ function OrderProvider({ children }) {
     useEffect(() => {
         const cartLocalStorage = JSON.parse(localStorage.getItem("cart"));
         if (cartLocalStorage) {
-            setCart(cartLocalStorage);
+            console.log("Productos cargados desde localStorage:", cartLocalStorage);
+
+            const validCart = cartLocalStorage.map(item => {
+                console.log("Precio del producto cargado:", item.price);
+                return {
+                    ...item,
+                    price: typeof item.price === 'number' ? item.price : parseFloat(item.price)
+                };
+            });
+            setCart(validCart);
         }
     }, []);
 
@@ -46,20 +55,38 @@ function OrderProvider({ children }) {
     }
 
     function addProd(prod) {
-        let priceNumber = prod.price;
 
-        if (typeof priceNumber === "string") {
-            priceNumber = priceNumber.replace(/\./g, "");
-            priceNumber = priceNumber.replace(",", ".");
-            priceNumber = parseFloat(priceNumber);
+        let priceNumber;
+
+        if (typeof prod.price === 'number') {
+            priceNumber = prod.price;
+        } else {
+            const cleanedPrice = prod.price
+                .toString()
+                .replace(/[^0-9,.-]/g, '')  
+                .replace(/\./g, '')         
+                .replace(',', '.');       
+
+            priceNumber = parseFloat(cleanedPrice);
         }
 
-        setCart((prevCart) => {
+        if (isNaN(priceNumber)) {
+            console.error("Precio no válido:", prod.price);
+            return;
+        }
+
+        return setCart((prevCart) => {
             const prodInCart = prevCart.find((item) => item.id === prod.id);
 
             if (prodInCart) {
                 return prevCart.map((item) =>
-                    item.id === prod.id ? { ...item, quantity: item.quantity + 1 } : item
+                    item.id === prod.id
+                        ? {
+                            ...item,
+                            quantity: item.quantity + 1,
+                            price: priceNumber
+                        }
+                        : item
                 );
             } else {
                 return [...prevCart, { ...prod, quantity: 1, price: priceNumber }];
@@ -81,7 +108,7 @@ function OrderProvider({ children }) {
                 .map((item) =>
                     item.id === id ? { ...item, quantity: item.quantity - 1 } : item
                 )
-                .filter(item => item.quantity > 0) // elimina el producto si la cantidad es 0
+                .filter(item => item.quantity > 0)
         );
     }
 
@@ -90,8 +117,6 @@ function OrderProvider({ children }) {
             prevCart.filter((item) => item.id !== id)
         );
     }
-
-
 
     const limpiarCarrito = () => {
         setCart([]);
@@ -105,8 +130,6 @@ function OrderProvider({ children }) {
         alert("Compra finalizada con éxito.");
         setCart([]);
     };
-
-
 
     return (
         <OrderContext.Provider

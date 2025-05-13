@@ -10,6 +10,7 @@ function formatPrice(value) {
         style: 'currency',
         currency: 'ARS',
         minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
     }).format(value);
 }
 
@@ -57,7 +58,7 @@ export default function Order() {
 
                     <tfoot>
                         <tr>
-                            <td colSpan={6}>Subtotal: {formatPrice(total)}</td>
+                            <td colSpan={5}>Subtotal: {formatPrice(total)}</td>
                         </tr>
                     </tfoot>
                 </table>

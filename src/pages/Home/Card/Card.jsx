@@ -1,10 +1,14 @@
 import { useOrder } from "../../../Context/OrderContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Card({ id, name, price, description, image }) {
     const { addProd } = useOrder();
+    const navigate = useNavigate();
 
-    const handleOnDetailsClick = () => {
-        window.location.href = `/DetalleProd/${id}`;
+    const handleOnDetailsClick = (e) => {
+        e.preventDefault();
+        navigate(`/DetalleProd/${id}`);
     };
 
     const handleAddToCart = () => {
@@ -24,26 +28,26 @@ export default function Card({ id, name, price, description, image }) {
                 <img
                     alt={name}
                     className="card-image"
-                    src={image} />
-
+                    src={image}
+                />
                 <button
                     className="card-add"
                     title="Añadir al carrito"
-                    onClick={handleAddToCart}>
+                    onClick={handleAddToCart}
+                >
                     Agregar al carrito
                 </button>
             </div>
+
             <div className="card-info">
                 <h3 className="card-title">{name}</h3>
-                <div className="p">
-                    {description}
-                </div>
+                <div className="p">{description}</div>
                 <div className="price-btn">
-                    <div className="card-price">{`$${price}`}</div>
+                    <div className="card-price">{`${price}`}</div>
                     <div className="btn">
-                        <a className="btn2" href="#" onClick={handleOnDetailsClick}>
+                        <button className="btn2" onClick={handleOnDetailsClick}>
                             Ver más
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

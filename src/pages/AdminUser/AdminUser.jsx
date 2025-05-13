@@ -5,16 +5,17 @@ import MainTitle from '../../components/Main-title/MainTitle';
 import axios from 'axios';
 import './AdminUser.css';
 
-const URL = "https://67d1918190e0670699baa003.mockapi.io/Usuarios";
+const URL = import.meta.env.VITE_API_URL;
+
 
 export default function AdminUsers() {
     const [users, setUsers] = useState([]);
-    const [form, setForm] = useState({ name: '', email: '', date: '', province: '' });
+    const [form, setForm] = useState({ name: '', email: ''});
     const [editingUser, setEditingUser] = useState(null);
 
     const getUsers = async () => {
         try {
-            const response = await axios.get(URL);
+            const response = await axios.get(`${URL}/users`);
             console.log("Usuarios obtenidos desde la API:", response.data);
             if (Array.isArray(response.data)) {
                 setUsers(response.data);
@@ -35,19 +36,19 @@ export default function AdminUsers() {
 
     const handleAddOrUpdateUser = async (e) => {
         e.preventDefault();
-        if (!form.name || !form.email || !form.date || !form.province) {
+        if (!form.name || !form.email) {
             alert('Todos los campos son obligatorios.');
             return;
         }
         try {
             if (editingUser) {
-                await axios.put(`${URL}/${editingUser.id}`, form);
+                await axios.put(`${URL}/${editingUser._id}`, form);
                 alert('Usuario actualizado con éxito');
             } else {
-                await axios.post(URL, form);
+                await axios.post(`${URL}/users`, form);
                 alert('Usuario agregado con éxito');
             }
-            setForm({ name: '', email: '', date: '', province: '' });
+            setForm({ name: '', email: '' });
             setEditingUser(null);
 
             console.log("Actualizando lista de usuarios...");
@@ -58,11 +59,10 @@ export default function AdminUsers() {
         }
     };
 
-
-    const handleDeleteUser = async (id) => {
+    const handleDeleteUser = async (_id) => {
         if (window.confirm('¿Seguro que quieres eliminar este usuario?')) {
             try {
-                await axios.delete(`${URL}/${id}`);
+                await axios.delete(`${URL}/users/${_id}`);
                 alert('Usuario eliminado con éxito');
                 getUsers();
             } catch (error) {
@@ -76,8 +76,6 @@ export default function AdminUsers() {
         setForm({
             name: user.name || '',
             email: user.email || '',
-            date: user.date || '',
-            province: user.province || ''
         });
         setEditingUser(user);
     };
@@ -95,9 +93,7 @@ export default function AdminUsers() {
                     <thead>
                         <tr className="title">
                             <th>Nombre</th>
-                            <th>E-mail</th>
-                            <th>Fecha de nacimiento</th>
-                            <th>Provincia</th>
+                            <th>Correo electrónico</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -107,8 +103,7 @@ export default function AdminUsers() {
                                 <tr key={user.id}>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.date}</td>
-                                    <td>{user.province}</td>
+                                    
                                     <td className="tools-cell">
                                         <div className="icon-container">
                                             <button className="btn" title="Editar" onClick={() => handleEditUser(user)}>
@@ -123,7 +118,7 @@ export default function AdminUsers() {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="5">No hay usuarios registrados.</td>
+                                <td colSpan="3">No hay usuarios registrados.</td>
                             </tr>
                         )}
                     </tbody>
@@ -161,47 +156,7 @@ export default function AdminUsers() {
                     required
                     type="password"
                     placeholder='Repetir contraseña' />
-                <input
-                    type='date'
-                    name='date'
-                    placeholder='Fecha de nacimiento'
-                    value={form.date}
-                    onChange={handleChange}
-                    required />
-                <select
-                    name="province"
-                    value={form.province}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="">Seleccione una provincia</option>
-                    <option value="Buenos Aires">Buenos Aires</option>
-                    <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
-                    <option value="Catamarca">Catamarca</option>
-                    <option value="Chaco">Chaco</option>
-                    <option value="Chubut">Chubut</option>
-                    <option value="Córdoba">Córdoba</option>
-                    <option value="Corrientes">Corrientes</option>
-                    <option value="Entre Ríos">Entre Ríos</option>
-                    <option value="Formosa">Formosa</option>
-                    <option value="Jujuy">Jujuy</option>
-                    <option value="La Pampa">La Pampa</option>
-                    <option value="La Rioja">La Rioja</option>
-                    <option value="Mendoza">Mendoza</option>
-                    <option value="Misiones">Misiones</option>
-                    <option value="Neuquén">Neuquén</option>
-                    <option value="Río Negro">Río Negro</option>
-                    <option value="Salta">Salta</option>
-                    <option value="San Juan">San Juan</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="Santa Cruz">Santa Cruz</option>
-                    <option value="Santa Fe">Santa Fe</option>
-                    <option value="Santiago del Estero">Santiago del Estero</option>
-                    <option value="Tierra del Fuego">Tierra del Fuego</option>
-                    <option value="Tucumán">Tucumán</option>
-                </select>
-
-
+                
                 <button type='submit'>{editingUser ? 'Editar' : 'Agregar'} usuario</button>
             </form>
         </main>

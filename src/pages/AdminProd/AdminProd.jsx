@@ -12,7 +12,7 @@ export default function AdminProd() {
     const [products, setProducts] = useState([]);
     const [form, setForm] = useState({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
     const [editingProduct, setEditingProduct] = useState(null);
-    
+
     useEffect(() => {
         getProducts();
     }, []);
@@ -21,7 +21,7 @@ export default function AdminProd() {
         try {
             const response = await axios.get(`${URL}/products`);
             const productos = response.data.products;
-            
+
             setProducts(productos);
         } catch (error) {
             console.warn(error);
@@ -38,7 +38,7 @@ export default function AdminProd() {
         formData.append('descriptionDetailed', form.descriptionDetailed);
         formData.append('createdAt', form.createdAt);
 
-        if (form.image?. length) {
+        if (form.image?.length) {
             formData.append('image', form.image[0]);
         }
 
@@ -54,7 +54,7 @@ export default function AdminProd() {
             setForm({ name: '', price: '', descriptionShort: '', descriptionDetailed: '', image: '', createdAt: '' });
             setEditingProduct(null);
             getProducts();
-            
+
         } catch (error) {
             console.log(error);
             alert('Error al procesar el producto');
@@ -115,7 +115,11 @@ export default function AdminProd() {
                                 </td>
                                 <td className="product-cell">{product.name}</td>
                                 <td className="description-cell">{product.descriptionShort}</td>
-                                <td className="price-cell">${product.price}</td>
+                                <td className="price-cell">{product.price.toLocaleString("es-AR",
+                                    {
+                                        style: "currency",
+                                        currency: "ARS",
+                                    })}</td>
                                 <td className="tools-cell">
                                     <div className="icon-container">
                                         <button className="btn" title="Editar" onClick={() => handleEditProduct(product)}>
