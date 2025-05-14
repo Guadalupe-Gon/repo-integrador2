@@ -6,8 +6,8 @@ import { useNavigate } from "react-router";
 
 const UserContext = createContext();
 
-export const useUser = () => useContext(UserContext);
 
+export const useUser = () => useContext(UserContext);
 
 function UserProvider({ children }) {
 

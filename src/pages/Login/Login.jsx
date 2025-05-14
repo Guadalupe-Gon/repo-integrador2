@@ -2,10 +2,9 @@ import React from 'react';
 import './Login.css';
 import MainTitle from '../../components/Main-title/MainTitle';
 import { useForm } from "react-hook-form";
-import { useUser } from '../../context/UserContext';
+import { useUser } from '../../Context/UserContext';
 
-
-export default function Login() {
+function Login() {
     const {
         register,
         handleSubmit,
@@ -74,3 +73,5 @@ export default function Login() {
         </main>
     );
 }
+
+export default Login;
