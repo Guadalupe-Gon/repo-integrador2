@@ -8,6 +8,7 @@ const UserContext = createContext();
 
 export const useUser = () => useContext(UserContext);
 
+
 function UserProvider({ children }) {
 
     const navigate = useNavigate();
