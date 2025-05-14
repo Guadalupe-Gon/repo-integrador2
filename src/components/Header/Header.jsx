@@ -8,9 +8,7 @@ import { useOrder } from "../../Context/OrderContext";
 import { useUser } from "../../Context/UserContext";
 
 
-
 export default function Header() {
-
     const [isBurgerOpen, setIsBurgerOpen] = React.useState(false);
     const handleBurgerClick = () => {
         setIsBurgerOpen(!isBurgerOpen);

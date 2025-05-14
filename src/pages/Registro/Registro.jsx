@@ -3,6 +3,7 @@ import './Registro.css';
 import MainTitle from '../../components/Main-title/MainTitle';
 import axios from 'axios';
 
+
 export default function Registro() {
     const [formData, setFormData] = useState({
         name: "",
@@ -22,23 +23,18 @@ export default function Registro() {
         if (!formData.name.match(/^[A-Za-zÁÉÍÓÚáéíóúÄËÏÖÜäëïöüÂÊÎÔÛâêîôûÇçÑñŃń' -]+$/)) {
             tempErrors.name = "El nombre solo debe contener letras, espacios, apóstrofes y guiones.";
         }
-
         if (!formData.email.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)) {
             tempErrors.email = "Correo electrónico no válido.";
         }
-
         if (formData.password.length < 4 || formData.password.length > 10) {
             tempErrors.password = "La contraseña debe tener entre 4 y 10 caracteres.";
         }
-
         if (formData.password !== formData.repeatPassword) {
             tempErrors.repeatPassword = "Las contraseñas no coinciden.";
         }
-
         if (!formData.birthDate) {
             tempErrors.birthDate = "Seleccione una fecha de nacimiento.";
         }
-
         if (!formData.province) {
             tempErrors.province = "Seleccione una provincia.";
         }
@@ -86,7 +82,6 @@ export default function Registro() {
             alert("Corrige los errores antes de enviar.");
         }
     };
-
 
     return (
         <main className="main-container">

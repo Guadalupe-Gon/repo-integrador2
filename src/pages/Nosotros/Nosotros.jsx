@@ -7,10 +7,10 @@ import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSqu
 import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons/faInstagramSquare';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
 
+
 export default function Nosotros() {
 
     return (
-
         <main className="nosotros">
             <MainTitle title="BAZAR BOUTIQUE" />
             <section className="empresa">

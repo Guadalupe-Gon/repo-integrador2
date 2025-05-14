@@ -15,7 +15,6 @@ function formatPrice(value) {
 }
 
 export default function Order() {
-
     const { cart, total, finalizarOrden, limpiarCarrito, disminuirCantidad, aumentarCantidad, eliminarProducto } = useOrder()
 
     return (

@@ -1,8 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-
 const OrderContext = createContext();
-
 export const useOrder = () => useContext(OrderContext);
+
 
 function OrderProvider({ children }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +54,6 @@ function OrderProvider({ children }) {
     }
 
     function addProd(prod) {
-
         let priceNumber;
 
         if (typeof prod.price === 'number') {
@@ -147,7 +145,6 @@ function OrderProvider({ children }) {
                 eliminarProducto,
             }}
         >
-
             {children}
         </OrderContext.Provider>
     );

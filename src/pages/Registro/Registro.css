@@ -149,7 +149,6 @@ label {
     border-color: rgb(190, 69, 69) !important;
 }
 
-
 @media screen and (max-width: 768px) {
     .form-container {
         margin: 1rem;

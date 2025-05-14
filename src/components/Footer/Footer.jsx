@@ -4,10 +4,9 @@ import { faArrowsRotate, faBagShopping, faCircleQuestion, faEnvelope, faLocation
 import "./Footer.css";
 import React from 'react';
 
+
 export default function Footer() {
-
     return (
-
         <footer className="main-footer">
 
             <section className="footer-social">
@@ -77,8 +76,6 @@ export default function Footer() {
                     <img alt="LOGO" className="logo2" src="/images/LOGO.png" />
                 </a>
             </div>
-
         </footer>
-
     )
 }

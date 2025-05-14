@@ -33,7 +33,6 @@ export default function AdminUsers() {
         getUsers();
     }, []);
 
-
     const handleAddOrUpdateUser = async (e) => {
         e.preventDefault();
         if (!form.name || !form.email) {
@@ -83,7 +82,6 @@ export default function AdminUsers() {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
-
 
     return (
         <main className='admin-container'>

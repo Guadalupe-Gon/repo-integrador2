@@ -19,15 +19,12 @@ export default function Contacto() {
         if (!/^[a-zA-ZÁÉÍÓÚáéíóúÄËÏÖÜäëïöüÑñÇç' -]{4,100}$/.test(nombre)) {
             newErrors.nombre = "El nombre debe tener entre 4 y 100 caracteres y solo contener letras, espacios, apóstrofes o guiones.";
         }
-
         if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(mail)) {
             newErrors.mail = "Ingrese un correo electrónico válido.";
         }
-
         if (mensaje.length < 20 || mensaje.length > 300) {
             newErrors.mensaje = "El mensaje debe tener entre 20 y 300 caracteres.";
         }
-
         if (Object.keys(newErrors).length === 0) {
             setIsLoading(true);
             try {
@@ -46,12 +43,15 @@ export default function Contacto() {
                 alert("Formulario enviado correctamente");
                 event.target.reset();
                 setErrors({});
+
             } catch (error) {
                 alert("Hubo un problema al enviar el formulario.");
                 console.error(error);
+
             } finally {
                 setIsLoading(false);
             }
+            
         } else {
             setErrors(newErrors);
         }

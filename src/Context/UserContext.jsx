@@ -3,11 +3,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { URL } from "../config/env.config";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
-
 const UserContext = createContext();
-
-
 export const useUser = () => useContext(UserContext);
+
 
 function UserProvider({ children }) {
 
@@ -15,8 +13,6 @@ function UserProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-
-    
 
     useEffect(() => { 
 
@@ -28,11 +24,8 @@ function UserProvider({ children }) {
         
     }, [user, token]);
 
-    
     async function login(data) {
-
         try {
-
             const response = await axios.post(`${URL}/login`, data)
             const { user, token } = response.data;
 
@@ -48,7 +41,6 @@ function UserProvider({ children }) {
             }).then(() => {
                 navigate("/");
             });
-
         } catch (error) {
             console.error("Error al iniciar sesión", error);
             Swal.fire({
