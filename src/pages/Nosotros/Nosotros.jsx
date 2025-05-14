@@ -28,11 +28,11 @@ export default function Nosotros() {
                     1721, Santos Lugares, partido de Tres de Febrero (Gran Buenos Aires).
                 </p>
                 <div className="imgs">
-                    <img alt="Logo empresa" className="log" src="public/images/LOGO.png" />
+                    <img alt="Logo empresa" className="log" src="/images/LOGO.png" />
                     <img
                         alt="Imagen de bazar"
                         className="bazar"
-                        src="public/images/BAZAR.jpg"
+                        src="/images/BAZAR.jpg"
                     />
                 </div>
             </section>
@@ -52,7 +52,7 @@ export default function Nosotros() {
                     <img
                         alt="Img de María Guadalupe Gonçalves"
                         className="img-perfil"
-                        src="public/images/PERFIL.jpeg" />
+                        src="/images/PERFIL.jpeg" />
                     <div className="card-content">
                         <h2 className="card-title">María Guadalupe Gonçalves</h2>
                         <p className="card-description">
